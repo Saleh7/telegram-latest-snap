@@ -1,0 +1,28 @@
+name: telegram-latest
+version: 0.10.16
+summary: Telegram Desktop Client latest
+description: |
+    Telegram messages are heavily encrypted and can self-destruct
+    Telegram delivers messages faster than any other application.
+confinement: strict
+grade: stable
+
+apps:
+  telegram:
+    command: tg.sh -workdir $SNAP_USER_DATA -noupdate
+    plugs: [unity7, network, network-bind, home, pulseaudio]
+
+parts:
+  telegram:
+    source: https://telegram.org/dl/desktop/linux/tsetup.$SNAPCRAFT_PROJECT_VERSION.tar.xz
+    plugin: dump
+    stage-packages:
+        - xkb-data
+        - libx11-xcb1
+    organize:
+        Telegram: bin/Telegram
+  wrapper:
+    source: .
+    plugin: dump
+    organize:
+      tg.sh: bin/tg.sh

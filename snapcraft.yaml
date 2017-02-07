@@ -1,5 +1,5 @@
 name: telegram-latest
-version: 0.10.16
+version: 1.0.5
 summary: Telegram Desktop Client latest
 description: |
     Telegram messages are heavily encrypted and can self-destruct
@@ -24,5 +24,9 @@ parts:
   wrapper:
     source: .
     plugin: dump
+    stage:
+        - bin/tg.sh
+    snap:
+        - bin/tg.sh
     organize:
       tg.sh: bin/tg.sh
